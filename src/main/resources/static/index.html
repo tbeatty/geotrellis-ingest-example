@@ -1,0 +1,41 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+<link rel="stylesheet" href="leaflet.css" />
+<script src="leaflet.js"></script>
+<style type="text/css">
+body, #map {
+  height: 100%;
+}
+</style>
+</head>
+<body>
+<div id="map">
+</div>
+<script type="text/javascript">
+
+  var base = new L.tileLayer("http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}&s=Ga", {maxNativeZoom: 17, maxZoom: 24});
+  var bilinear = new L.tileLayer("/example-bilinear/{z}/{x}/{y}", {maxNativeZoom: 20, maxZoom: 20});
+  var cubic_convolution = new L.tileLayer("/example-cubic-convolution/{z}/{x}/{y}", {maxNativeZoom: 20, maxZoom: 20});
+  var cubic_spline = new L.tileLayer("/example-cubic-spline/{z}/{x}/{y}", {maxNativeZoom: 20, maxZoom: 20});
+  var lanczos = new L.tileLayer("/example-lanczos/{z}/{x}/{y}", {maxNativeZoom: 20, maxZoom: 20});
+  var nearest_neighbor = new L.tileLayer("/example-nearest-neighbor/{z}/{x}/{y}", {maxNativeZoom: 20, maxZoom: 20});
+
+  var map = L.map('map');
+
+  map.setView([-43.880245, 171.656824], 17);
+
+  var overlayMaps = {
+    "bilinear": bilinear,
+    "cubic-convolution": cubic_convolution,
+    "cubic-spline": cubic_spline,
+    "lanczos": lanczos,
+    "nearest-neighbor": nearest_neighbor
+  };
+
+  L.control.layers(overlayMaps, {}, {collapsed: false}).addTo(map);
+  base.addTo(map);
+  overlayMaps.bilinear.addTo(map);
+</script>
+</body>
+</html>

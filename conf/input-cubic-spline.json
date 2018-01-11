@@ -1,0 +1,12 @@
+[
+  {
+    "name": "example-cubic-spline",
+    "format": "multiband-geotiff",
+    "backend": {
+      "type": "hadoop",
+      "path": "file:///tmp/geotrellis-ingest-example/data/example-ndvi.tif"
+    },
+    "cache": "NONE"
+  }
+]
+
